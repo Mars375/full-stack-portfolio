@@ -1,29 +1,63 @@
-import type { Metadata } from 'next'
+export type ProjectStatus = 'active' | 'in_development' | 'planned'
 
-export const siteConfig = {
-  name: 'Loïc Rossi',
-  url: 'https://github.com/Mars375',
-  email: 'rossi.loic.pro@gmail.com',
-  author: 'Loïc Rossi',
+export interface Project {
+  title: string
+  description: string
+  tech: string[]
+  status: ProjectStatus
+  github?: string
+  demo?: string
 }
 
-export const projects = [
+export const siteConfig = {
+  name: 'Loic Rossi',
+  title: 'Full Stack Developer & Automation Specialist',
+  description: 'Je concois des systemes qui tournent tout seuls.',
+  url: 'https://loicrossi.dev',
+  github: 'https://github.com/Mars375',
+  email: 'rossi.loic.pro@gmail.com',
+  location: 'Paris, France',
+}
+
+export const projects: Project[] = [
   {
-    title: 'Tachikoma',
-    description: 'OpenClaw orchestrator agent',
-    tech: ['TypeScript', 'Node.js'],
-    github: 'https://github.com/Mars375/Tachikoma',
+    title: 'Homelab Infrastructure',
+    description: 'Orchestration Docker complete — Caddy, Pi-hole, monitoring, media stack, backups automatises.',
+    tech: ['docker', 'caddy', 'linux', 'restic'],
+    status: 'active',
+    github: 'https://github.com/Mars375/homelab-cortex',
+  },
+  {
+    title: 'n8n Workflows',
+    description: 'Veille technologique automatisee (6 sources), backups 3-2-1, et pipelines de donnees.',
+    tech: ['n8n', 'typescript', 'postgresql'],
+    status: 'active',
+  },
+  {
+    title: 'Portfolio',
+    description: 'Ce site — Next.js 15, design system Control Room, metriques GitHub live.',
+    tech: ['next.js', 'react', 'typescript', 'tailwind'],
+    status: 'active',
+    demo: 'https://loicrossi.dev',
   },
   {
     title: 'JobFlow Assistant',
-    description: 'Job search automation',
-    tech: ['Next.js', 'TypeScript'],
-    github: 'https://github.com/Mars375/jobflow-assistant',
+    description: 'Workflow automation pour la recherche d\'emploi — scraping, matching, suivi.',
+    tech: ['n8n', 'typescript', 'next.js'],
+    status: 'in_development',
   },
 ]
 
-export const techStack = {
-  frontend: ['Next.js 15', 'React 19', 'TypeScript 5.0', 'Tailwind CSS', 'Framer Motion'],
-  backend: ['Node.js', 'tRPC', 'Prisma', 'PostgreSQL', 'Supabase'],
-  automation: ['n8n', 'GitHub Actions', 'Docker', 'CI/CD'],
+export const techStack: Record<string, string[]> = {
+  FRONTEND: ['next.js', 'react', 'typescript', 'tailwind', 'framer-motion'],
+  BACKEND: ['node.js', 'postgresql', 'supabase', 'prisma', 'docker'],
+  AUTOMATION: ['n8n', 'github-actions', 'restic', 'caddy', 'linux'],
+  TOOLS: ['git', 'vscode', 'claude-code', 'vercel'],
 }
+
+export const navLinks = [
+  { href: '/', label: '~/HOME' },
+  { href: '/projects', label: '~/PROJECTS' },
+  { href: '/about', label: '~/ABOUT' },
+  { href: '/contact', label: '~/CONTACT' },
+]
