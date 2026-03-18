@@ -1,43 +1,78 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Toaster } from 'sonner'
+import { Navbar } from '@/components/Navbar'
+import { Footer } from '@/components/Footer'
+import { siteConfig } from '@/lib/const'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains' })
 
 export const metadata: Metadata = {
-  title: 'Loïc Rossi | Full Stack Developer',
-  description: 'Full Stack Developer & Automation Specialist building production-ready applications with Next.js, TypeScript, and modern tech stack.',
-  keywords: ['Full Stack Developer', 'Next.js', 'TypeScript', 'React', 'Automation'],
-  authors: [{ name: 'Loïc Rossi', url: 'https://github.com/Mars375' }],
+  title: {
+    default: `${siteConfig.name} | ${siteConfig.title}`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: ['Full Stack Developer', 'Automation', 'Next.js', 'TypeScript', 'Docker', 'n8n'],
+  authors: [{ name: siteConfig.name, url: siteConfig.github }],
   openGraph: {
-    title: 'Loïc Rossi | Full Stack Developer',
-    description: 'Full Stack Developer & Automation Specialist',
-    url: 'https://loïrossi.dev',
-    siteName: 'Portfolio',
-    locale: 'en_US',
+    title: `${siteConfig.name} | ${siteConfig.title}`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: 'fr_FR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Loïc Rossi | Full Stack Developer',
-    description: 'Full Stack Developer & Automation Specialist',
+    title: `${siteConfig.name} | ${siteConfig.title}`,
+    description: siteConfig.description,
   },
-  robots: {
-    index: true,
-    follow: true,
+  robots: { index: true, follow: true },
+  metadataBase: new URL(siteConfig.url),
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: siteConfig.name,
+  jobTitle: siteConfig.title,
+  url: siteConfig.url,
+  email: siteConfig.email,
+  sameAs: [siteConfig.github],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Paris',
+    addressCountry: 'FR',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
-      <body className="font-sans antialiased">
-        {children}
+    <html lang="fr" className={`${inter.variable} ${jetbrains.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          // Safe: jsonLd is built entirely from static siteConfig constants, no user input
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="font-sans antialiased min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-14">{children}</main>
+        <Footer />
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: 'var(--surface)',
+              color: 'var(--text)',
+              border: '1px solid var(--border)',
+            },
+          }}
+        />
       </body>
     </html>
   )
