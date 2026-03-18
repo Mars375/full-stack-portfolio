@@ -52,7 +52,7 @@ export const techStack: Record<string, string[]> = {
   FRONTEND: ['next.js', 'react', 'typescript', 'tailwind', 'framer-motion'],
   BACKEND: ['node.js', 'postgresql', 'supabase', 'prisma', 'docker'],
   AUTOMATION: ['n8n', 'github-actions', 'restic', 'caddy', 'linux'],
-  TOOLS: ['git', 'vscode', 'claude-code', 'vercel'],
+  TOOLS: ['git', 'vscode', 'figma', 'vercel'],
 }
 
 export const navLinks = [
