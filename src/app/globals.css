@@ -31,24 +31,9 @@
     color: var(--text);
   }
 
-  /* Minimal custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 3px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 2px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--muted);
-  }
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
-  }
+  /* Hide scrollbar — ScrollDots handles navigation */
+  ::-webkit-scrollbar { display: none; }
+  * { scrollbar-width: none; -ms-overflow-style: none; }
 }
 
 @layer utilities {
@@ -70,12 +55,12 @@
     animation: scanline 0.4s ease-out forwards;
   }
 
-  /* Grid: fine crosshatch lines, very subtle */
+  /* Grid: airy crosshatch — large spacing for architectural feel */
   .bg-grid {
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
+      linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    background-size: 80px 80px;
   }
 
   @keyframes blink-cursor {

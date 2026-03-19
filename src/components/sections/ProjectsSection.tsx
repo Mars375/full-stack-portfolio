@@ -35,8 +35,8 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
   const project = projects[current]
 
   return (
-    <section id="projects" className="relative py-24 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section id="projects" className="relative py-32 px-4 min-h-[80vh] flex flex-col justify-center">
+      <div className="max-w-3xl mx-auto w-full">
         <TerminalCommand path="~/projects" command="ls --detailed" />
 
         <div className="relative">

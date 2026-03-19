@@ -15,8 +15,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ name, title, location, repos, commits }: HeroSectionProps) {
   const { scrollY } = useScroll()
-  // Content drifts upward at 40% of scroll speed — visible parallax effect
-  const contentY = useTransform(scrollY, [0, 800], [0, -120])
+  const contentY = useTransform(scrollY, [0, 800], [0, -100])
 
   const [booted, setBooted] = useState(true)
   const [phase, setPhase] = useState(3)
@@ -47,7 +46,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
       const throttled = (time: number) => {
         if (cancelled) return
         if (!lastTime) lastTime = time
-        if (time - lastTime >= 60) {
+        if (time - lastTime >= 55) {
           i++
           setTypedName(name.slice(0, i))
           lastTime = time
@@ -75,7 +74,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
   }, [name])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 overflow-hidden">
       {/* Scanline */}
       {!booted && phase >= 1 && phase < 3 && (
         <div className="fixed inset-0 z-40 pointer-events-none overflow-hidden">
@@ -84,117 +83,117 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
       )}
 
       {/* Parallax content wrapper */}
-      <motion.div style={{ y: contentY }} className="flex flex-col items-center">
+      <motion.div style={{ y: contentY }} className="w-full max-w-4xl">
 
-      {/* Init text */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: phase >= 1 ? 1 : 0 }}
-        className="font-mono text-[10px] text-muted tracking-[3px] mb-10 h-4"
-      >
-        {!booted && phase >= 1 && (
-          <TypingEffect text="INITIALIZING SESSION..." speed={30} />
-        )}
-      </motion.div>
-
-      {/* Whoami command */}
-      <motion.div
-        initial={booted ? undefined : { opacity: 0 }}
-        animate={{ opacity: phase >= 2 ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="font-mono text-xs text-success mb-6"
-      >
-        $ whoami
-      </motion.div>
-
-      {/* Name */}
-      <motion.h1
-        initial={booted ? undefined : { opacity: 0 }}
-        animate={{ opacity: phase >= 2 ? 1 : 0 }}
-        transition={{ delay: 0.1, duration: 0.3 }}
-        className="text-5xl md:text-6xl font-extralight text-text tracking-tight text-center"
-      >
-        {typedName}
-        {!nameReady && <span className="animate-blink font-mono">_</span>}
-      </motion.h1>
-
-      {/* Title */}
-      <motion.p
-        initial={booted ? undefined : { opacity: 0 }}
-        animate={{ opacity: phase >= 2 ? 1 : 0 }}
-        transition={{ delay: 0.3, duration: 0.3 }}
-        className="font-mono text-sm text-accent mt-5 text-center"
-      >
-        {title}
-      </motion.p>
-
-      {/* Location */}
-      <motion.p
-        initial={booted ? undefined : { opacity: 0 }}
-        animate={{ opacity: phase >= 2 ? 1 : 0 }}
-        transition={{ delay: 0.4, duration: 0.3 }}
-        className="font-mono text-[11px] text-muted mt-3 flex items-center gap-2"
-      >
-        <StatusDot status="active" /> {location} &middot; Disponible
-      </motion.p>
-
-      {/* CTAs */}
-      <motion.div
-        initial={booted ? undefined : { opacity: 0, y: 10 }}
-        animate={{ opacity: phase >= 3 ? 1 : 0, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.4 }}
-        className="flex gap-3 mt-12"
-      >
-        <button
-          onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-          className="px-5 py-2 border border-accent text-accent font-mono text-xs rounded hover:bg-accent/10 transition-colors"
+        {/* Init text */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: phase >= 1 ? 1 : 0 }}
+          className="font-mono text-[10px] text-muted tracking-[4px] mb-14 h-4"
         >
-          $ view --projects
-        </button>
-        <button
-          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          className="px-5 py-2 border border-border text-muted font-mono text-xs rounded hover:border-muted hover:text-text transition-colors"
-        >
-          $ contact --init
-        </button>
-      </motion.div>
+          {!booted && phase >= 1 && (
+            <TypingEffect text="INITIALIZING SESSION..." speed={30} />
+          )}
+        </motion.div>
 
-      {/* Metrics */}
-      <motion.div
-        initial={booted ? undefined : { opacity: 0 }}
-        animate={{ opacity: phase >= 3 ? 1 : 0 }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-        className="flex gap-12 mt-16 font-mono text-xs"
-      >
-        <div className="text-center">
-          <div className="text-2xl font-light text-text">{repos ?? '\u2014'}</div>
-          <div className="text-muted mt-1">repos</div>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl font-light text-text">{commits ?? '\u2014'}</div>
-          <div className="text-muted mt-1">commits</div>
-        </div>
-      </motion.div>
+        {/* Prompt line */}
+        <motion.div
+          initial={booted ? undefined : { opacity: 0 }}
+          animate={{ opacity: phase >= 2 ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="font-mono text-sm mb-5"
+        >
+          <span className="text-success">loic@cortex</span>
+          <span className="text-muted">:~ $ </span>
+          <span className="text-text/70">whoami</span>
+        </motion.div>
+
+        {/* Name — huge, editorial, left-aligned */}
+        <motion.h1
+          initial={booted ? undefined : { opacity: 0 }}
+          animate={{ opacity: phase >= 2 ? 1 : 0 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
+          className="text-[clamp(3.5rem,10vw,7rem)] font-extralight text-text leading-none tracking-[-3px] md:tracking-[-5px]"
+        >
+          {typedName}
+          {!nameReady && <span className="animate-blink font-mono font-thin">_</span>}
+        </motion.h1>
+
+        {/* Separator */}
+        <motion.div
+          initial={booted ? undefined : { opacity: 0, scaleX: 0 }}
+          animate={{ opacity: phase >= 2 ? 1 : 0, scaleX: phase >= 2 ? 1 : 0 }}
+          transition={{ delay: 0.3, duration: 0.6, ease: 'easeOut' }}
+          className="origin-left h-px mt-7 mb-7 bg-gradient-to-r from-accent/40 via-border to-transparent"
+        />
+
+        {/* System info — terminal key/value */}
+        <motion.div
+          initial={booted ? undefined : { opacity: 0 }}
+          animate={{ opacity: phase >= 2 ? 1 : 0 }}
+          transition={{ delay: 0.4, duration: 0.4 }}
+          className="font-mono text-xs flex flex-col gap-2.5"
+        >
+          <div className="flex items-baseline gap-4">
+            <span className="text-muted/50 w-24 shrink-0">[role]</span>
+            <span className="text-accent">{title}</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-muted/50 w-24 shrink-0">[location]</span>
+            <span className="text-text/80 flex items-center gap-2">
+              <StatusDot status="active" /> {location} &middot; Disponible
+            </span>
+          </div>
+          {(repos || commits) && (
+            <div className="flex items-baseline gap-4">
+              <span className="text-muted/50 w-24 shrink-0">[stats]</span>
+              <span className="text-text/60">
+                {repos ?? '—'} repos &nbsp;·&nbsp; {commits ?? '—'} commits
+              </span>
+            </div>
+          )}
+        </motion.div>
+
+        {/* CTAs */}
+        <motion.div
+          initial={booted ? undefined : { opacity: 0, y: 8 }}
+          animate={{ opacity: phase >= 3 ? 1 : 0, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+          className="flex flex-wrap gap-3 mt-12"
+        >
+          <button
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-6 py-2.5 bg-accent/10 border border-accent/60 text-accent font-mono text-xs rounded hover:bg-accent/20 hover:border-accent transition-all duration-200"
+          >
+            $ view --projects
+          </button>
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-6 py-2.5 border border-white/10 text-muted font-mono text-xs rounded hover:border-white/20 hover:text-text transition-all duration-200"
+          >
+            $ contact --init
+          </button>
+        </motion.div>
 
       </motion.div>{/* end parallax wrapper */}
 
-      {/* Scroll indicator — animated + clickable */}
+      {/* Scroll indicator */}
       <button
         onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer"
+        className="absolute bottom-8 left-6 md:left-16 flex items-center gap-3 group cursor-pointer"
         aria-label="Scroll to projects"
       >
-        <span className="font-mono text-[8px] text-muted tracking-[3px] group-hover:text-accent transition-colors duration-300">
+        <motion.div
+          animate={{ x: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+          className="flex items-center gap-2"
+        >
+          <div className="w-6 h-px bg-muted/30 group-hover:bg-accent/60 transition-colors duration-300" />
+          <div className="w-1.5 h-1.5 border-r border-b border-muted/40 rotate-[-45deg] group-hover:border-accent/60 transition-colors duration-300" />
+        </motion.div>
+        <span className="font-mono text-[9px] text-muted/40 tracking-[3px] group-hover:text-accent/60 transition-colors duration-300">
           SCROLL
         </span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-0.5"
-        >
-          <div className="w-px h-5 bg-gradient-to-b from-muted/60 to-transparent group-hover:from-accent/60 transition-colors duration-300" />
-          <div className="w-1.5 h-1.5 border-r border-b border-muted/50 rotate-45 -mt-1 group-hover:border-accent/60 transition-colors duration-300" />
-        </motion.div>
       </button>
     </section>
   )
