@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { Toaster } from 'sonner'
-import { Navbar } from '@/components/Navbar'
-import { Footer } from '@/components/Footer'
 import { siteConfig } from '@/lib/const'
 import './globals.css'
 
@@ -59,10 +57,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1 pt-14">{children}</main>
-        <Footer />
+      <body className="font-sans antialiased min-h-screen">
+        <main>{children}</main>
         <Toaster
           position="bottom-right"
           toastOptions={{
