@@ -18,6 +18,10 @@
     --radius: 0.5rem;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     border-color: var(--border);
   }
@@ -25,6 +29,25 @@
   body {
     background-color: var(--bg);
     color: var(--text);
+  }
+
+  /* Minimal custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
   }
 }
 
@@ -47,8 +70,9 @@
     animation: scanline 0.4s ease-out forwards;
   }
 
+  /* Grid: white dots for visibility on deep black bg */
   .bg-grid {
-    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
     background-size: 30px 30px;
   }
 
@@ -59,5 +83,34 @@
 
   .animate-blink {
     animation: blink-cursor 1s step-end infinite;
+  }
+
+  /* Ambient orb float animations */
+  @keyframes orb-float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    33% { transform: translate(40px, -50px) scale(1.08); opacity: 1.4; }
+    66% { transform: translate(-20px, 30px) scale(0.95); opacity: 0.7; }
+  }
+
+  @keyframes orb-float-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    50% { transform: translate(-35px, -30px) scale(1.12); opacity: 1.5; }
+  }
+
+  @keyframes orb-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  .animate-orb-1 {
+    animation: orb-float-1 14s ease-in-out infinite;
+  }
+
+  .animate-orb-2 {
+    animation: orb-float-2 18s ease-in-out infinite;
+  }
+
+  .animate-orb-pulse {
+    animation: orb-pulse 10s ease-in-out infinite;
   }
 }
