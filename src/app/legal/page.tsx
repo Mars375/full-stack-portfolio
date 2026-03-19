@@ -1,11 +1,18 @@
 import type { Metadata } from 'next'
-import { SectionHeader } from '@/components/SectionHeader'
 import { siteConfig } from '@/lib/const'
 
 export const metadata: Metadata = {
   title: 'Mentions Legales',
   description: 'Mentions legales et politique de confidentialite.',
   robots: { index: false, follow: false },
+}
+
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <h2 className="font-mono text-xs font-semibold text-accent uppercase tracking-widest mb-3">
+      {label}
+    </h2>
+  )
 }
 
 export default function LegalPage() {
@@ -17,7 +24,7 @@ export default function LegalPage() {
 
       <div className="space-y-8 text-sm text-muted leading-relaxed">
         <section>
-          <SectionHeader label="EDITEUR DU SITE" />
+          <SectionLabel label="EDITEUR DU SITE" />
           <p>
             {siteConfig.name}<br />
             Developpeur independant<br />
@@ -27,7 +34,7 @@ export default function LegalPage() {
         </section>
 
         <section>
-          <SectionHeader label="HEBERGEUR" />
+          <SectionLabel label="HEBERGEUR" />
           <p>
             Vercel Inc.<br />
             440 N Barranca Ave #4133<br />
@@ -37,7 +44,7 @@ export default function LegalPage() {
         </section>
 
         <section>
-          <SectionHeader label="DONNEES PERSONNELLES" />
+          <SectionLabel label="DONNEES PERSONNELLES" />
           <p>
             Ce site collecte des donnees personnelles uniquement via le formulaire de contact :
             nom, adresse email et message. Ces donnees sont utilisees exclusivement pour repondre
@@ -52,7 +59,7 @@ export default function LegalPage() {
         </section>
 
         <section>
-          <SectionHeader label="VOS DROITS" />
+          <SectionLabel label="VOS DROITS" />
           <p>
             Conformement au RGPD, vous disposez d&apos;un droit d&apos;acces, de rectification et de
             suppression de vos donnees. Pour exercer ces droits, contactez :{' '}
@@ -61,7 +68,7 @@ export default function LegalPage() {
         </section>
 
         <section>
-          <SectionHeader label="COOKIES" />
+          <SectionLabel label="COOKIES" />
           <p>
             Ce site n&apos;utilise aucun cookie tiers, cookie de tracking ou cookie publicitaire.
             Seuls des cookies techniques strictement necessaires au fonctionnement du site peuvent
