@@ -22,8 +22,8 @@ export function StackSection({ techStack }: StackSectionProps) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {Object.entries(techStack).map(([category, items], i) => (
-            <ScrollReveal key={category} delay={i * 0.1}>
-              <div className="bg-surface border border-border rounded-lg p-4">
+            <ScrollReveal key={category} delay={i * 0.1} className="h-full">
+              <div className="bg-surface border border-border rounded-lg p-4 h-full">
                 <div className={`font-mono text-[10px] tracking-[2px] mb-3 ${categoryColors[category] ?? 'text-muted'}`}>
                   {category}
                 </div>

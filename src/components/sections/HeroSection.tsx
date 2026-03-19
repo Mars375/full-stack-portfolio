@@ -178,11 +178,24 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
 
       </motion.div>{/* end parallax wrapper */}
 
-      {/* Scroll indicator — outside parallax to stay pinned */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-        <span className="font-mono text-[8px] text-muted tracking-[3px]">SCROLL</span>
-        <div className="w-px h-4 bg-gradient-to-b from-muted to-transparent" />
-      </div>
+      {/* Scroll indicator — animated + clickable */}
+      <button
+        onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer"
+        aria-label="Scroll to projects"
+      >
+        <span className="font-mono text-[8px] text-muted tracking-[3px] group-hover:text-accent transition-colors duration-300">
+          SCROLL
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+          className="flex flex-col items-center gap-0.5"
+        >
+          <div className="w-px h-5 bg-gradient-to-b from-muted/60 to-transparent group-hover:from-accent/60 transition-colors duration-300" />
+          <div className="w-1.5 h-1.5 border-r border-b border-muted/50 rotate-45 -mt-1 group-hover:border-accent/60 transition-colors duration-300" />
+        </motion.div>
+      </button>
     </section>
   )
 }

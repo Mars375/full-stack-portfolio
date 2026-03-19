@@ -70,9 +70,9 @@
     animation: scanline 0.4s ease-out forwards;
   }
 
-  /* Grid: white dots for visibility on deep black bg */
+  /* Grid: white dots, subtle on deep black bg */
   .bg-grid {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
     background-size: 30px 30px;
   }
 
