@@ -1,9 +1,10 @@
 'use client'
 
-import { ExternalLink } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react'
 import { TerminalCommand } from '@/components/ui/TerminalCommand'
 import { TerminalWindow } from '@/components/ui/TerminalWindow'
-import { ScrollReveal } from '@/components/effects/ScrollReveal'
 import { StatusDot } from '@/components/StatusDot'
 import type { Project } from '@/lib/const'
 
@@ -18,14 +19,36 @@ const statusLabel: Record<string, string> = {
 }
 
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
+  const [current, setCurrent] = useState(0)
+  const [direction, setDirection] = useState(0)
+
+  const go = (dir: number) => {
+    setDirection(dir)
+    setCurrent((c) => (c + dir + projects.length) % projects.length)
+  }
+
+  const goTo = (index: number) => {
+    setDirection(index > current ? 1 : -1)
+    setCurrent(index)
+  }
+
+  const project = projects[current]
+
   return (
     <section id="projects" className="relative py-24 px-4">
       <div className="max-w-3xl mx-auto">
         <TerminalCommand path="~/projects" command="ls --detailed" />
 
-        <div className="flex flex-col gap-4">
-          {projects.map((project, i) => (
-            <ScrollReveal key={project.title} delay={i * 0.15} direction="right">
+        <div className="relative">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={current}
+              custom={direction}
+              initial={{ opacity: 0, x: direction * 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -50 }}
+              transition={{ duration: 0.28, ease: 'easeInOut' }}
+            >
               <TerminalWindow path={`~/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
                 {/* cat README.md */}
                 <div className="text-success">$ <span className="text-text">cat README.md</span></div>
@@ -73,8 +96,44 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   </div>
                 )}
               </TerminalWindow>
-            </ScrollReveal>
-          ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Carousel navigation */}
+          <div className="flex items-center justify-between mt-5">
+            <button
+              onClick={() => go(-1)}
+              className="font-mono text-xs text-muted/50 hover:text-accent transition-colors flex items-center gap-1"
+            >
+              <ChevronLeft className="w-3 h-3" /> prev
+            </button>
+
+            <div className="flex items-center gap-2">
+              {projects.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  className={`transition-all duration-200 rounded-full ${
+                    i === current
+                      ? 'w-5 h-1.5 bg-accent'
+                      : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Go to project ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={() => go(1)}
+              className="font-mono text-xs text-muted/50 hover:text-accent transition-colors flex items-center gap-1"
+            >
+              next <ChevronRight className="w-3 h-3" />
+            </button>
+          </div>
+
+          <div className="text-center mt-2 font-mono text-[10px] text-muted/40">
+            {current + 1} / {projects.length}
+          </div>
         </div>
       </div>
     </section>

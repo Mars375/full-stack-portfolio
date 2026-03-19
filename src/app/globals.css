@@ -70,10 +70,12 @@
     animation: scanline 0.4s ease-out forwards;
   }
 
-  /* Grid: white dots, subtle on deep black bg */
+  /* Grid: fine crosshatch lines, very subtle */
   .bg-grid {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-    background-size: 30px 30px;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
 
   @keyframes blink-cursor {

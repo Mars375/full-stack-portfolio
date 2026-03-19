@@ -90,7 +90,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 1 ? 1 : 0 }}
-        className="font-mono text-[10px] text-muted tracking-[3px] mb-6 h-4"
+        className="font-mono text-[10px] text-muted tracking-[3px] mb-10 h-4"
       >
         {!booted && phase >= 1 && (
           <TypingEffect text="INITIALIZING SESSION..." speed={30} />
@@ -102,7 +102,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
         initial={booted ? undefined : { opacity: 0 }}
         animate={{ opacity: phase >= 2 ? 1 : 0 }}
         transition={{ duration: 0.3 }}
-        className="font-mono text-xs text-success mb-4"
+        className="font-mono text-xs text-success mb-6"
       >
         $ whoami
       </motion.div>
@@ -112,7 +112,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
         initial={booted ? undefined : { opacity: 0 }}
         animate={{ opacity: phase >= 2 ? 1 : 0 }}
         transition={{ delay: 0.1, duration: 0.3 }}
-        className="text-4xl md:text-5xl font-extralight text-text tracking-tight text-center"
+        className="text-5xl md:text-6xl font-extralight text-text tracking-tight text-center"
       >
         {typedName}
         {!nameReady && <span className="animate-blink font-mono">_</span>}
@@ -123,7 +123,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
         initial={booted ? undefined : { opacity: 0 }}
         animate={{ opacity: phase >= 2 ? 1 : 0 }}
         transition={{ delay: 0.3, duration: 0.3 }}
-        className="font-mono text-sm text-accent mt-3 text-center"
+        className="font-mono text-sm text-accent mt-5 text-center"
       >
         {title}
       </motion.p>
@@ -133,7 +133,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
         initial={booted ? undefined : { opacity: 0 }}
         animate={{ opacity: phase >= 2 ? 1 : 0 }}
         transition={{ delay: 0.4, duration: 0.3 }}
-        className="font-mono text-[11px] text-muted mt-2 flex items-center gap-2"
+        className="font-mono text-[11px] text-muted mt-3 flex items-center gap-2"
       >
         <StatusDot status="active" /> {location} &middot; Disponible
       </motion.p>
@@ -143,7 +143,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
         initial={booted ? undefined : { opacity: 0, y: 10 }}
         animate={{ opacity: phase >= 3 ? 1 : 0, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
-        className="flex gap-3 mt-8"
+        className="flex gap-3 mt-12"
       >
         <button
           onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
@@ -164,7 +164,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
         initial={booted ? undefined : { opacity: 0 }}
         animate={{ opacity: phase >= 3 ? 1 : 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
-        className="flex gap-8 mt-12 font-mono text-xs"
+        className="flex gap-12 mt-16 font-mono text-xs"
       >
         <div className="text-center">
           <div className="text-2xl font-light text-text">{repos ?? '\u2014'}</div>

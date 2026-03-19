@@ -10,9 +10,7 @@ export function ScrollDots() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id)
-          }
+          if (entry.isIntersecting) setActive(entry.target.id)
         })
       },
       { threshold: 0.3 }
@@ -27,22 +25,31 @@ export function ScrollDots() {
   }, [])
 
   return (
-    <nav className="fixed right-5 top-1/2 -translate-y-1/2 z-50 hidden sm:flex flex-col gap-3 items-center">
+    <nav className="fixed right-5 top-1/2 -translate-y-1/2 z-50 hidden sm:flex flex-col gap-3 items-end">
       {navLinks.map(({ id, label }) => (
         <button
           key={id}
           onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
-          className="group relative flex items-center"
+          className="flex items-center gap-3 group cursor-pointer"
           aria-label={`Scroll to ${label}`}
         >
-          <span className="absolute right-6 font-mono text-[9px] text-muted opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-            {label}
-          </span>
-          <div
-            className={`rounded-full transition-all ${
+          {/* Label — always visible, faded when inactive */}
+          <span
+            className={`font-mono text-[9px] tracking-wider transition-all duration-300 ${
               active === id
-                ? 'w-2 h-2 bg-accent shadow-[0_0_6px_var(--accent)]'
-                : 'w-1.5 h-1.5 bg-muted/40 hover:bg-muted'
+                ? 'text-accent opacity-100'
+                : 'text-white/30 opacity-100 group-hover:text-white/60'
+            }`}
+          >
+            {label.toUpperCase()}
+          </span>
+
+          {/* Bar indicator */}
+          <div
+            className={`rounded-full transition-all duration-300 ${
+              active === id
+                ? 'w-7 h-[3px] bg-accent shadow-[0_0_8px_var(--accent)]'
+                : 'w-4 h-[2px] bg-white/20 group-hover:bg-white/40 group-hover:w-5'
             }`}
           />
         </button>
