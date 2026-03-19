@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { TypingEffect } from '@/components/effects/TypingEffect'
 import { StatusDot } from '@/components/StatusDot'
 
@@ -14,6 +14,10 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ name, title, location, repos, commits }: HeroSectionProps) {
+  const { scrollY } = useScroll()
+  // Content drifts upward at 40% of scroll speed — visible parallax effect
+  const contentY = useTransform(scrollY, [0, 800], [0, -120])
+
   const [booted, setBooted] = useState(true)
   const [phase, setPhase] = useState(3)
   const [typedName, setTypedName] = useState(name)
@@ -71,13 +75,16 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
   }, [name])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-4">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
       {/* Scanline */}
       {!booted && phase >= 1 && phase < 3 && (
         <div className="fixed inset-0 z-40 pointer-events-none overflow-hidden">
           <div className="absolute left-0 right-0 h-px bg-accent/60 animate-scanline" />
         </div>
       )}
+
+      {/* Parallax content wrapper */}
+      <motion.div style={{ y: contentY }} className="flex flex-col items-center">
 
       {/* Init text */}
       <motion.div
@@ -169,7 +176,9 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      </motion.div>{/* end parallax wrapper */}
+
+      {/* Scroll indicator — outside parallax to stay pinned */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
         <span className="font-mono text-[8px] text-muted tracking-[3px]">SCROLL</span>
         <div className="w-px h-4 bg-gradient-to-b from-muted to-transparent" />

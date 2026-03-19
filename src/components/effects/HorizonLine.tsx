@@ -13,9 +13,14 @@ export function HorizonLine() {
   return (
     <motion.div
       style={prefersReduced ? undefined : { y }}
-      className="fixed left-0 right-0 top-[40vh] h-px z-0 pointer-events-none"
+      className="fixed left-0 right-0 top-[40vh] z-0 pointer-events-none"
     >
-      <div className="w-full h-full bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+      {/* Glow diffuse above */}
+      <div className="w-full h-8 -mt-4 bg-gradient-to-r from-transparent via-accent/10 to-transparent blur-xl" />
+      {/* Glow medium */}
+      <div className="w-full h-3 -mt-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent blur-md" />
+      {/* Sharp line */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-accent/70 to-transparent" />
     </motion.div>
   )
 }
