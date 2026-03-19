@@ -154,7 +154,7 @@ export function StackSection({ techStack }: StackSectionProps) {
               <div className="bg-surface border border-border rounded-lg p-4 font-mono text-xs flex flex-col gap-2">
                 <div className="text-muted/50 text-[10px] tracking-[2px]">LEARNING</div>
                 <div className="flex flex-wrap gap-1.5 mt-1">
-                  {['rust', 'k8s', 'llm-ops'].map((item) => (
+                  {['rust', 'k8s', 'terraform'].map((item) => (
                     <span key={item} className="text-[10px] px-2 py-0.5 rounded border border-dashed border-muted/20 text-muted/40">
                       {item}
                     </span>
