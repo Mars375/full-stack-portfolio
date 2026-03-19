@@ -144,11 +144,11 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
               <StatusDot status="active" /> {location} &middot; Disponible
             </span>
           </div>
-          {(repos || commits) && (
+          {repos !== null && (
             <div className="flex items-baseline gap-4">
               <span className="text-muted/50 w-24 shrink-0">[stats]</span>
               <span className="text-text/60">
-                {repos ?? '—'} repos &nbsp;·&nbsp; {commits ?? '—'} commits
+                {repos} repos{commits !== null ? <> &nbsp;·&nbsp; {commits} commits</> : null}
               </span>
             </div>
           )}
@@ -169,7 +169,7 @@ export function HeroSection({ name, title, location, repos, commits }: HeroSecti
           </button>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-6 py-2.5 border border-white/10 text-muted font-mono text-xs rounded hover:border-white/20 hover:text-text transition-all duration-200"
+            className="px-6 py-2.5 border border-info/40 text-info font-mono text-xs rounded hover:bg-info/10 hover:border-info/70 transition-all duration-200"
           >
             $ contact --init
           </button>

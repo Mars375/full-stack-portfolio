@@ -16,7 +16,7 @@ export const siteConfig = {
   url: 'https://loicrossi.dev',
   github: 'https://github.com/Mars375',
   email: 'rossi.loic.pro@gmail.com',
-  location: 'Paris, France',
+  location: 'Strasbourg, France',
 }
 
 export const projects: Project[] = [
