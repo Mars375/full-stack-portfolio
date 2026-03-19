@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { StatusDot } from './StatusDot'
 import { navLinks } from '@/lib/const'
 import { cn } from '@/lib/utils'
 
 export function Navbar() {
-  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -37,12 +35,9 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                'font-mono text-xs tracking-wide transition-colors',
-                pathname === link.href ? 'text-accent' : 'text-muted hover:text-text'
-              )}
+              key={link.id}
+              href={`/#${link.id}`}
+              className="font-mono text-xs tracking-wide transition-colors text-muted hover:text-text"
             >
               {link.label}
             </Link>
@@ -62,13 +57,10 @@ export function Navbar() {
         <div className="md:hidden bg-bg/95 backdrop-blur-xl border-t border-border px-4 pb-4">
           {navLinks.map((link) => (
             <Link
-              key={link.href}
-              href={link.href}
+              key={link.id}
+              href={`/#${link.id}`}
               onClick={() => setMobileOpen(false)}
-              className={cn(
-                'block py-2 font-mono text-sm',
-                pathname === link.href ? 'text-accent' : 'text-muted'
-              )}
+              className="block py-2 font-mono text-sm text-muted"
             >
               {link.label}
             </Link>

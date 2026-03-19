@@ -56,8 +56,8 @@ export const techStack: Record<string, string[]> = {
 }
 
 export const navLinks = [
-  { href: '/', label: '~/HOME' },
-  { href: '/projects', label: '~/PROJECTS' },
-  { href: '/about', label: '~/ABOUT' },
-  { href: '/contact', label: '~/CONTACT' },
+  { id: 'hero', label: 'Home' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'stack', label: 'Stack' },
+  { id: 'contact', label: 'Contact' },
 ]

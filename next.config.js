@@ -7,6 +7,13 @@ const nextConfig = {
       { hostname: 'raw.githubusercontent.com' },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/projects', destination: '/#projects', permanent: true },
+      { source: '/about', destination: '/#stack', permanent: true },
+      { source: '/contact', destination: '/#contact', permanent: true },
+    ]
+  },
 }
 
 module.exports = nextConfig

@@ -14,6 +14,7 @@
     --accent-dim: rgba(232, 168, 73, 0.12);
     --success: #a6e3a1;
     --error: #f38ba8;
+    --info: #89b4fa;
     --radius: 0.5rem;
   }
 
@@ -47,9 +48,16 @@
   }
 
   .bg-grid {
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  @keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .animate-blink {
+    animation: blink-cursor 1s step-end infinite;
   }
 }

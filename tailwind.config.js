@@ -18,6 +18,7 @@ module.exports = {
         'accent-dim': 'var(--accent-dim)',
         success: 'var(--success)',
         error: 'var(--error)',
+        info: 'var(--info)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
