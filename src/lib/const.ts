@@ -26,7 +26,7 @@ export const projects: Project[] = [
     tech: ['next.js', 'typescript', 'tailwind', 'drizzle', 'neon', 'clerk', 'stripe', 'gsap', 'framer-motion', 'recharts'],
     status: 'active',
     github: 'https://github.com/Mars375/pulse',
-    demo: 'https://pulse-saas.vercel.app',
+    demo: 'https://pulse-swart-delta.vercel.app',
   },
   {
     title: 'Homelab Infrastructure',
