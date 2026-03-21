@@ -21,6 +21,14 @@ export const siteConfig = {
 
 export const projects: Project[] = [
   {
+    title: 'Pulse',
+    description: 'SaaS metrics dashboard — MRR, churn, cohorts, revenue. Next.js 16, Clerk auth, Stripe billing, GSAP scroll animations.',
+    tech: ['next.js', 'typescript', 'tailwind', 'drizzle', 'neon', 'clerk', 'stripe', 'gsap', 'framer-motion', 'recharts'],
+    status: 'active',
+    github: 'https://github.com/Mars375/pulse',
+    demo: 'https://pulse-saas.vercel.app',
+  },
+  {
     title: 'Homelab Infrastructure',
     description: 'Orchestration Docker complete — Caddy, Pi-hole, monitoring, media stack, backups automatises.',
     tech: ['docker', 'caddy', 'linux', 'restic'],
@@ -49,10 +57,10 @@ export const projects: Project[] = [
 ]
 
 export const techStack: Record<string, string[]> = {
-  FRONTEND: ['next.js', 'react', 'typescript', 'tailwind', 'framer-motion'],
-  BACKEND: ['node.js', 'postgresql', 'supabase', 'prisma', 'docker'],
+  FRONTEND: ['next.js', 'react', 'typescript', 'tailwind', 'framer-motion', 'gsap', 'recharts'],
+  BACKEND: ['node.js', 'postgresql', 'neon', 'drizzle', 'supabase', 'stripe', 'docker'],
   AUTOMATION: ['n8n', 'github-actions', 'restic', 'caddy', 'linux'],
-  TOOLS: ['git', 'vscode', 'figma', 'vercel'],
+  TOOLS: ['git', 'vscode', 'figma', 'vercel', 'clerk'],
 }
 
 export const navLinks = [

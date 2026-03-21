@@ -37,6 +37,12 @@ const techColors: Record<string, string> = {
   'caddy': 'bg-success/5 text-success/60 border-success/15',
   'framer-motion': 'bg-purple-500/5 text-purple-400/70 border-purple-500/15',
   'node.js': 'bg-success/8 text-success/80 border-success/25',
+  'drizzle': 'bg-success/5 text-success/70 border-success/15',
+  'neon': 'bg-emerald-500/5 text-emerald-400/70 border-emerald-500/15',
+  'clerk': 'bg-purple-500/5 text-purple-300/70 border-purple-400/15',
+  'stripe': 'bg-indigo-500/5 text-indigo-400/70 border-indigo-500/15',
+  'gsap': 'bg-success/8 text-success/70 border-success/20',
+  'recharts': 'bg-info/5 text-info/60 border-info/15',
 }
 
 const defaultTechColor = 'bg-white/5 text-white/50 border-white/10'
