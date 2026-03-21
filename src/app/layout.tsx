@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { Toaster } from 'sonner'
 import { siteConfig } from '@/lib/const'
+import { SmoothScroll } from '@/components/effects/SmoothScroll'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -49,7 +50,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${jetbrains.variable} scroll-smooth`}>
+    <html lang="fr" className={`${inter.variable} ${jetbrains.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -58,17 +59,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-sans antialiased min-h-screen">
-        <main>{children}</main>
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            style: {
-              background: 'var(--surface)',
-              color: 'var(--text)',
-              border: '1px solid var(--border)',
-            },
-          }}
-        />
+        <SmoothScroll>
+          <main>{children}</main>
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: 'var(--surface)',
+                color: 'var(--text)',
+                border: '1px solid var(--border)',
+              },
+            }}
+          />
+        </SmoothScroll>
       </body>
     </html>
   )
