@@ -78,7 +78,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               exit={{ opacity: 0, x: direction * -60 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 min-h-[440px]">
 
                 {/* Left — terminal card */}
                 <div className="lg:col-span-3">
