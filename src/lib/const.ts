@@ -7,6 +7,7 @@ export interface Project {
   status: ProjectStatus
   github?: string
   demo?: string
+  screenshot?: string
 }
 
 export const siteConfig = {
@@ -27,6 +28,7 @@ export const projects: Project[] = [
     status: 'active',
     github: 'https://github.com/Mars375/pulse',
     demo: 'https://pulse-swart-delta.vercel.app',
+    screenshot: '/screenshots/pulse.png',
   },
   {
     title: 'Homelab Infrastructure',

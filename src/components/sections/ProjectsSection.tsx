@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, ChevronLeft, ChevronRight, Terminal } from 'lucide-react'
 import { TerminalCommand } from '@/components/ui/TerminalCommand'
@@ -80,9 +81,12 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             >
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 min-h-[440px]">
 
-                {/* Left — terminal card */}
+                {/* Left — terminal card, fixed height on desktop */}
                 <div className="lg:col-span-3">
-                  <TerminalWindow path={`~/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <TerminalWindow
+                    path={`~/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="lg:h-[460px]"
+                  >
                     <div className="text-success text-xs">$ <span className="text-text">cat README.md</span></div>
 
                     <div className="mt-4 flex items-center gap-2">
@@ -151,18 +155,30 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     </div>
 
                     {/* Content area */}
-                    <div className="flex-1 flex flex-col items-center justify-center gap-4 p-6 relative overflow-hidden">
-                      {/* Ambient glow behind icon */}
-                      <div
-                        className="absolute inset-0 opacity-30"
-                        style={{ background: 'radial-gradient(circle at 50% 40%, rgba(232,168,73,0.15) 0%, transparent 65%)' }}
-                      />
-                      <Terminal className="w-10 h-10 text-accent/40 relative z-10" />
-                      <div className="font-mono text-xs text-muted/40 relative z-10">{project.title}</div>
-                      <div className={`font-mono text-[9px] tracking-widest px-3 py-1 rounded-full border relative z-10 ${statusColor[project.status]}`}>
-                        {statusLabel[project.status]}
+                    {project.screenshot ? (
+                      <div className="flex-1 relative overflow-hidden">
+                        <Image
+                          src={project.screenshot}
+                          alt={`${project.title} screenshot`}
+                          fill
+                          className="object-cover object-top"
+                          sizes="(max-width: 1024px) 100vw, 40vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-surface/60 via-transparent to-transparent" />
                       </div>
-                    </div>
+                    ) : (
+                      <div className="flex-1 flex flex-col items-center justify-center gap-4 p-6 relative overflow-hidden">
+                        <div
+                          className="absolute inset-0 opacity-30"
+                          style={{ background: 'radial-gradient(circle at 50% 40%, rgba(232,168,73,0.15) 0%, transparent 65%)' }}
+                        />
+                        <Terminal className="w-10 h-10 text-accent/40 relative z-10" />
+                        <div className="font-mono text-xs text-muted/40 relative z-10">{project.title}</div>
+                        <div className={`font-mono text-[9px] tracking-widest px-3 py-1 rounded-full border relative z-10 ${statusColor[project.status]}`}>
+                          {statusLabel[project.status]}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Stats / meta */}
