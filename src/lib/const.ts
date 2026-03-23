@@ -31,6 +31,14 @@ export const projects: Project[] = [
     screenshot: '/screenshots/pulse.png',
   },
   {
+    title: 'Heartbeat',
+    description: 'SaaS de monitoring d\'uptime — surveille tes services, gère les incidents, partage des status pages. Alertes temps réel, 90 jours d\'historique.',
+    tech: ['next.js', 'typescript', 'tailwind', 'drizzle', 'neon', 'clerk', 'stripe', 'resend', 'framer-motion', 'recharts'],
+    status: 'in_development',
+    github: 'https://github.com/Mars375/heartbeat',
+    screenshot: '/screenshots/heartbeat.png',
+  },
+  {
     title: 'Homelab Infrastructure',
     description: 'Orchestration Docker complete — Caddy, Pi-hole, monitoring, media stack, backups automatises.',
     tech: ['docker', 'caddy', 'linux', 'restic'],
