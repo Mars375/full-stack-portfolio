@@ -34,8 +34,9 @@ export const projects: Project[] = [
     title: 'Heartbeat',
     description: 'SaaS de monitoring d\'uptime — surveille tes services, gère les incidents, partage des status pages. Alertes temps réel, 90 jours d\'historique.',
     tech: ['next.js', 'typescript', 'tailwind', 'drizzle', 'neon', 'clerk', 'stripe', 'resend', 'framer-motion', 'recharts'],
-    status: 'in_development',
+    status: 'active',
     github: 'https://github.com/Mars375/heartbeat',
+    demo: 'https://heartbeat-blush.vercel.app',
     screenshot: '/screenshots/heartbeat.png',
   },
   {
