@@ -40,6 +40,15 @@ export const projects: Project[] = [
     screenshot: '/screenshots/heartbeat.png',
   },
   {
+    title: 'RepoReady',
+    description: 'AI-powered repo analyzer — paste a GitHub URL, get README, .env.example, docker-compose and CI config generated in seconds.',
+    tech: ['next.js', 'typescript', 'tailwind', 'clerk', 'neon', 'drizzle', 'ai-sdk', 'github-api'],
+    status: 'active',
+    github: 'https://github.com/Mars375/repoready',
+    demo: 'https://repoready.vercel.app',
+    screenshot: '/screenshots/repoready.png',
+  },
+  {
     title: 'Homelab Infrastructure',
     description: 'Orchestration Docker complete — Caddy, Pi-hole, monitoring, media stack, backups automatises.',
     tech: ['docker', 'caddy', 'linux', 'restic'],
