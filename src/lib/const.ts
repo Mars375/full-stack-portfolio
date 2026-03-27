@@ -70,9 +70,12 @@ export const projects: Project[] = [
   },
   {
     title: 'JobFlow Assistant',
-    description: 'Workflow automation pour la recherche d\'emploi — scraping, matching, suivi.',
-    tech: ['n8n', 'typescript', 'next.js'],
-    status: 'in_development',
+    description: 'Agrégateur d\'offres d\'emploi France-first — France Travail + Adzuna, matching CV sémantique (pgvector + OpenAI embeddings), Kanban de candidatures, alertes Slack & Telegram.',
+    tech: ['next.js', 'typescript', 'tailwind', 'prisma', 'neon', 'pgvector', 'resend', 'openai'],
+    status: 'active',
+    github: 'https://github.com/Mars375/jobflow-assistant',
+    demo: 'https://jobflow-assistant.vercel.app',
+    screenshot: '/screenshots/jobflow.png',
   },
 ]
 
