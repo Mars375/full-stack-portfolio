@@ -1,6 +1,8 @@
 # loicrossi.dev
 
-Portfolio personnel — design "Terminal Horizon". Une seule page scrollable à sections pleine hauteur, esthétique terminal/monitoring avec parallax ambiant, animations de boot et métriques GitHub live.
+> Personal portfolio — "Terminal Horizon" design. Single scrollable page with full-height sections, terminal/monitoring aesthetic, ambient parallax, boot animations, and live GitHub metrics.
+
+Portfolio personnel avec design "Terminal Horizon". Une seule page scrollable à sections pleine hauteur, esthétique terminal/monitoring avec parallax ambiant, animations de boot et métriques GitHub live.
 
 ## Aperçu
 
